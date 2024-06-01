@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { View, Text, FlatList, TouchableOpacity, Button } from 'react-native'
 import { useRouter } from 'expo-router'
-
+import { useAppSelector } from '@/lib/hooks'
 export default function Home() {
-  const [todos, setTodos] = useState<string[]>([])
+  const todos = useAppSelector((state) => state.todos.todos)
   const router = useRouter()
 
   return (
@@ -26,7 +26,6 @@ export default function Home() {
         onPress={() =>
           router.push({
             pathname: 'screens/Add',
-            params: { setTodos },
           })
         }
       />
